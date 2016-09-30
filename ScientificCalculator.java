@@ -135,7 +135,8 @@ public class ScientificCalculator extends Application {
             else if (e.getSource() == fact)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "!";
-                tf.setText("");
+                answer = Factorial(total1);
+                tf.setText("" + answer);
             }
       
             else if (e.getSource() == equal)  {
@@ -155,9 +156,6 @@ public class ScientificCalculator extends Application {
                             break; 
                         case "x^n":
                             answer = recursivePower(total1, total2);
-                            break;
-                        case "!": 
-                            answer = Factorial(total1);
                             break;
                     }
                 tf.setText("" + answer);
