@@ -6,25 +6,21 @@
 package scientificcalculator;
 
 /***********************************************************
-*Calculator.java
+*ScientificCalculator.java
 *
-*A basic simple easy to use Calculator
+*A Calculator in progress without number buttons
 *
 *@Author: Andy Omori
 *
-*@Version: 9/17/13
+*@Version: 9/17/16
 ************************************************************/
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.event.*;
-import java.lang.NumberFormatException;
-import java.text.DateFormat;
-import java.util.Locale;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.layout.ColumnConstraints;
@@ -60,42 +56,43 @@ public class ScientificCalculator extends Application {
     @Override
     public void start(Stage stage) {
     
-    GridPane root = new GridPane();
-    root.setAlignment(Pos.CENTER);
-    root.setHgap(10);
-    root.setVgap(12);
+        GridPane root = new GridPane();
+        root.setAlignment(Pos.CENTER);
+        root.setHgap(10);
+        root.setVgap(12);
     
-    ColumnConstraints column1 = new ColumnConstraints();
-    column1.setHalignment(HPos.RIGHT);
-    root.getColumnConstraints().add(column1); 
-    ColumnConstraints column2 = new ColumnConstraints();
-    column2.setHalignment(HPos.LEFT);
-    root.getColumnConstraints().add(column2);
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setHalignment(HPos.RIGHT);
+        root.getColumnConstraints().add(column1); 
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setHalignment(HPos.LEFT);
+        root.getColumnConstraints().add(column2);
     
-    HBox allButtons = new HBox();
-    allButtons.getChildren().addAll(add, sub, multi, div, equal, clear, pow, fact);
+        HBox allButtons = new HBox();
+        allButtons.getChildren().addAll(add, sub, multi, div, equal, clear, pow, fact);
 
-    root.getChildren().addAll(tf); 
-
-    allButtons.setSpacing(10.0);
-    allButtons.setAlignment(Pos.CENTER);
+        root.add(tf, 0, 0);
+        root.add(allButtons, 0, 2);
     
-    root.setStyle("-fx-padding: 10px;");
-    root.setStyle("-fx-background-color: white;");
+        allButtons.setSpacing(10.0);
+        allButtons.setAlignment(Pos.CENTER);
     
-    stage.setTitle("Calculator");
-   
-    add.setOnAction(new MyHandler());
-    sub.setOnAction(new MyHandler());
-    multi.setOnAction(new MyHandler());
-    div.setOnAction(new MyHandler());
-    equal.setOnAction(new MyHandler());
-    clear.setOnAction(new MyHandler());
-    pow.setOnAction(new MyHandler());
-    fact.setOnAction(new MyHandler());
+        //Actions for buttons
+        add.setOnAction(new MyHandler());
+        sub.setOnAction(new MyHandler());
+        multi.setOnAction(new MyHandler());
+        div.setOnAction(new MyHandler());
+        equal.setOnAction(new MyHandler());
+        clear.setOnAction(new MyHandler());
+        pow.setOnAction(new MyHandler());
+        fact.setOnAction(new MyHandler());
     
-    stage.setScene(new Scene(root, 300, 350));
-    stage.show();
+        //Frame properties
+        root.setStyle("-fx-padding: 10px;");
+        root.setStyle("-fx-background-color: white;");
+        stage.setTitle("Scientific Calculator");
+        stage.setScene(new Scene(root, 400, 450));
+        stage.show();
     }
 
     private class MyHandler implements EventHandler<ActionEvent> {
