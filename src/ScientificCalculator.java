@@ -58,27 +58,32 @@ public class ScientificCalculator extends Application {
         root.setAlignment(Pos.CENTER);
         root.setHgap(10);
         root.setVgap(12);
-    
+        
+        //Set the text centered
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setHalignment(HPos.RIGHT);
         root.getColumnConstraints().add(column1); 
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setHalignment(HPos.LEFT);
         root.getColumnConstraints().add(column2);
-    
+        
+        //Center the buttons through hbox
         HBox allButtons = new HBox();
         HBox allButtons1 = new HBox();
         HBox allButtons2 = new HBox();
         
+        //Adds buttons to three rows
         allButtons.getChildren().addAll(add, sub, multi, div, equal);
         allButtons1.getChildren().addAll(pow, fact, farh, cels, pound);
         allButtons2.getChildren().addAll(clear);
-
+        
+        //0 is the same column as textfield, 2nd field is row number
         root.add(tf, 0, 0);
-        root.add(allButtons, 0, 2);
+        root.add(allButtons, 0, 2);      
         root.add(allButtons1, 0, 3);
         root.add(allButtons2, 0, 4);
         
+        //All buttons are centered, sized 10
         allButtons.setSpacing(10.0);
         allButtons.setAlignment(Pos.CENTER);
         allButtons1.setSpacing(10.0);
