@@ -6,13 +6,13 @@
 package scientificcalculator;
 
 /***********************************************************
-*ScientificCalculator.java
+*Calculator.java
 *
-*A Calculator in progress without number buttons
+*A basic simple easy to use Calculator
 *
 *@Author: Andy Omori
 *
-*@Version: 9/17/16
+*@Version: 9/17/13
 ************************************************************/
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -47,6 +47,8 @@ public class ScientificCalculator extends Application {
     Button clear = new Button("C");
     Button pow = new Button("xⁿ");
     Button fact = new Button("!");
+    Button farh = new Button("°F");
+    Button cels = new Button("°C");
     
     public static void main(String[] args) {
        
@@ -69,7 +71,7 @@ public class ScientificCalculator extends Application {
         root.getColumnConstraints().add(column2);
     
         HBox allButtons = new HBox();
-        allButtons.getChildren().addAll(add, sub, multi, div, equal, clear, pow, fact);
+        allButtons.getChildren().addAll(add, sub, multi, div, equal, clear, pow, fact, farh, cels);
 
         root.add(tf, 0, 0);
         root.add(allButtons, 0, 2);
@@ -86,12 +88,14 @@ public class ScientificCalculator extends Application {
         clear.setOnAction(new MyHandler());
         pow.setOnAction(new MyHandler());
         fact.setOnAction(new MyHandler());
-    
+        farh.setOnAction(new MyHandler());
+        cels.setOnAction(new MyHandler());
+        
         //Frame properties
         root.setStyle("-fx-padding: 10px;");
         root.setStyle("-fx-background-color: white;");
         stage.setTitle("Scientific Calculator");
-        stage.setScene(new Scene(root, 400, 450));
+        stage.setScene(new Scene(root, 500, 550));
         stage.show();
     }
 
@@ -128,14 +132,28 @@ public class ScientificCalculator extends Application {
      
             else if (e.getSource() == pow)  {
                 total1 = Double.parseDouble(tf.getText());
-                op = "x^n";
+                op = "xⁿ";
                 tf.setText("");
             }
        
             else if (e.getSource() == fact)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "!";
-                answer = Factorial(total1);
+                answer = Functions.Factorial(total1);
+                tf.setText("" + answer);
+            }
+            
+            else if (e.getSource() == farh)  {
+                total1 = Double.parseDouble(tf.getText());
+                op = "°F";
+                answer = Functions.Farenheit(total1);
+                tf.setText("" + answer);
+            }
+            
+             else if (e.getSource() == cels)  {
+                total1 = Double.parseDouble(tf.getText());
+                op = "°C";
+                answer = Functions.Celsius(total1);
                 tf.setText("" + answer);
             }
       
@@ -154,8 +172,8 @@ public class ScientificCalculator extends Application {
                         case "/":
                             answer = total1 / total2;
                             break; 
-                        case "x^n":
-                            answer = recursivePower(total1, total2);
+                        case "xⁿ":
+                            answer = Functions.recursivePower(total1, total2);
                             break;
                     }
                 tf.setText("" + answer);
@@ -170,25 +188,18 @@ public class ScientificCalculator extends Application {
             tf.setText("Error, enter number");
           }
         }     
-    }    
-   
-    public double recursivePower(double base, double power) {
-        
-        if (power == 1) {
-            return base;
-        }
-        return base * recursivePower(base, power - 1);
+    }       
+}   
+
+/*
+   public String Date(String date) {
+      Date today = new Date();
+      DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.US);
+      String strDate = df.format(today);
+      setText(strDate);
     }
-   
-    public double Factorial(double a) {
-      
-        if (a < 1) {
-            return 1;
-        }
-        else {
-            return a * Factorial(a-1);
-        }
-    }
-}  
+
+*/
+
 
 
