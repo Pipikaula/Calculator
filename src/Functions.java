@@ -43,4 +43,13 @@ public class Functions extends ScientificCalculator  {
         return fa;
     }
     
+    public static double Pound (double p)  {
+        
+        double lb;
+        double kg = p;
+        lb = kg / 0.453;
+        
+        return lb;
+    }
+    
 }
