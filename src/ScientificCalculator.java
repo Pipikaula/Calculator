@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scientificcalculator;
 
 /***********************************************************
 *Calculator.java
 *
-*A basic simple easy to use Calculator
+*A basic simple easy to use Scientific Calculator which is a work in progress
 *
 *@Author: Andy Omori
 *
-*@Version: 9/17/13
+*@Version: 10/2/16
 ************************************************************/
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -49,6 +44,7 @@ public class ScientificCalculator extends Application {
     Button fact = new Button("!");
     Button farh = new Button("°F");
     Button cels = new Button("°C");
+    Button pound = new Button("lb");
     
     public static void main(String[] args) {
        
@@ -71,14 +67,25 @@ public class ScientificCalculator extends Application {
         root.getColumnConstraints().add(column2);
     
         HBox allButtons = new HBox();
-        allButtons.getChildren().addAll(add, sub, multi, div, equal, clear, pow, fact, farh, cels);
+        HBox allButtons1 = new HBox();
+        HBox allButtons2 = new HBox();
+        
+        allButtons.getChildren().addAll(add, sub, multi, div, equal);
+        allButtons1.getChildren().addAll(pow, fact, farh, cels, pound);
+        allButtons2.getChildren().addAll(clear);
 
         root.add(tf, 0, 0);
         root.add(allButtons, 0, 2);
-    
+        root.add(allButtons1, 0, 3);
+        root.add(allButtons2, 0, 4);
+        
         allButtons.setSpacing(10.0);
         allButtons.setAlignment(Pos.CENTER);
-    
+        allButtons1.setSpacing(10.0);
+        allButtons1.setAlignment(Pos.CENTER);
+        allButtons2.setSpacing(10.0);
+        allButtons2.setAlignment(Pos.CENTER);
+        
         //Actions for buttons
         add.setOnAction(new MyHandler());
         sub.setOnAction(new MyHandler());
@@ -90,6 +97,7 @@ public class ScientificCalculator extends Application {
         fact.setOnAction(new MyHandler());
         farh.setOnAction(new MyHandler());
         cels.setOnAction(new MyHandler());
+        pound.setOnAction(new MyHandler());
         
         //Frame properties
         root.setStyle("-fx-padding: 10px;");
@@ -156,7 +164,14 @@ public class ScientificCalculator extends Application {
                 answer = Functions.Celsius(total1);
                 tf.setText("" + answer);
             }
-      
+            
+            else if (e.getSource() == pound)  {
+                total1 = Double.parseDouble(tf.getText());
+                op = "lb";
+                answer = Functions.Pound(total1);
+                tf.setText("" + answer);
+            }
+            
             else if (e.getSource() == equal)  {
                 total2 = Double.parseDouble(tf.getText());
                     switch (op) {
@@ -191,15 +206,7 @@ public class ScientificCalculator extends Application {
     }       
 }   
 
-/*
-   public String Date(String date) {
-      Date today = new Date();
-      DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.US);
-      String strDate = df.format(today);
-      setText(strDate);
-    }
 
-*/
 
 
 
