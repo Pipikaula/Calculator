@@ -1,13 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package scientificcalculator;
 
 /***********************************************************
 *Calculator.java
 *
-*A basic simple easy to use Scientific Calculator which is a work in progress
+*A basic simple easy to use Calculator
 *
 *@Author: Andy Omori
 *
-*@Version: 10/2/16
+*@Version: 1/9/17
 ************************************************************/
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -23,17 +28,30 @@ import javafx.scene.layout.HBox;
 
 public class ScientificCalculator extends Application {
     
-    private double total1;
-    private double total2;
-    private double answer;
+    double total1;
+    double total2;
+    double answer;
     
     //Operator for calculations
     String op = null;
+    String display;
     
     //Textfield object
     TextField tf = new TextField();
     
-    //Button objects
+    //Button objects, numbers
+    Button zero = new Button("0");
+    Button one = new Button("1");
+    Button two = new Button("2");
+    Button three = new Button("3");
+    Button four = new Button("4");
+    Button five = new Button("5");
+    Button six = new Button("6");
+    Button seven = new Button("7");
+    Button eight = new Button("8");
+    Button nine = new Button("9");
+    
+    //Button objects, operators
     Button add = new Button("+");
     Button sub = new Button("-");
     Button multi = new Button("X");
@@ -45,6 +63,9 @@ public class ScientificCalculator extends Application {
     Button farh = new Button("°F");
     Button cels = new Button("°C");
     Button pound = new Button("lb");
+    Button kilogram = new Button("kg");
+    Button mph = new Button("mph");
+    Button kph = new Button("kph");
     
     public static void main(String[] args) {
        
@@ -58,68 +79,152 @@ public class ScientificCalculator extends Application {
         root.setAlignment(Pos.CENTER);
         root.setHgap(10);
         root.setVgap(12);
-        
-        //Set the text centered
+    
+        //Centers the buttons
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setHalignment(HPos.RIGHT);
         root.getColumnConstraints().add(column1); 
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setHalignment(HPos.LEFT);
         root.getColumnConstraints().add(column2);
-        
-        //Center the buttons through hbox
+    
+        //Set buttons to HBox style
         HBox allButtons = new HBox();
         HBox allButtons1 = new HBox();
         HBox allButtons2 = new HBox();
+        HBox allButtons3 = new HBox();
+        HBox allButtons4 = new HBox();
+        HBox allButtons5 = new HBox();
         
-        //Adds buttons to three rows
-        allButtons.getChildren().addAll(add, sub, multi, div, equal);
-        allButtons1.getChildren().addAll(pow, fact, farh, cels, pound);
-        allButtons2.getChildren().addAll(clear);
+        //Add buttons to rows alignment
+        allButtons.getChildren().addAll(one, two, three, four);
+        allButtons1.getChildren().addAll(five, six, seven, eight);
+        allButtons2.getChildren().addAll(nine, zero, clear, equal);
+        allButtons3.getChildren().addAll(add, sub, multi, div);
+        allButtons4.getChildren().addAll(pow, fact, farh, cels);
+        allButtons5.getChildren().addAll(pound, kilogram, mph, kph);
         
-        //0 is the same column as textfield, 2nd field is row number
+        //Add all buttons to calculator
         root.add(tf, 0, 0);
-        root.add(allButtons, 0, 2);      
+        root.add(allButtons, 0, 2);
         root.add(allButtons1, 0, 3);
         root.add(allButtons2, 0, 4);
+        root.add(allButtons3, 0, 5);
+        root.add(allButtons4, 0, 6);
+        root.add(allButtons5, 0, 7);
         
-        //All buttons are centered, sized 10
         allButtons.setSpacing(10.0);
         allButtons.setAlignment(Pos.CENTER);
+        
         allButtons1.setSpacing(10.0);
         allButtons1.setAlignment(Pos.CENTER);
+        
         allButtons2.setSpacing(10.0);
         allButtons2.setAlignment(Pos.CENTER);
         
+        allButtons3.setSpacing(10.0);
+        allButtons3.setAlignment(Pos.CENTER);
+        
+        allButtons4.setSpacing(10.0);
+        allButtons4.setAlignment(Pos.CENTER);
+        
+        allButtons5.setSpacing(10.0);
+        allButtons5.setAlignment(Pos.CENTER);
+    
+        //Numbers actions
+        zero.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        one.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        two.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        three.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        four.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        five.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        six.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        seven.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        eight.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        nine.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+       
         //Actions for buttons
-        add.setOnAction(new MyHandler());
-        sub.setOnAction(new MyHandler());
-        multi.setOnAction(new MyHandler());
-        div.setOnAction(new MyHandler());
-        equal.setOnAction(new MyHandler());
-        clear.setOnAction(new MyHandler());
-        pow.setOnAction(new MyHandler());
-        fact.setOnAction(new MyHandler());
-        farh.setOnAction(new MyHandler());
-        cels.setOnAction(new MyHandler());
-        pound.setOnAction(new MyHandler());
+        add.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        sub.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        multi.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        div.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        equal.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        clear.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        pow.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        fact.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        farh.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        cels.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        pound.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        kilogram.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        mph.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        kph.setOnAction((EventHandler<ActionEvent>) new MyHandler());
         
         //Frame properties
         root.setStyle("-fx-padding: 10px;");
         root.setStyle("-fx-background-color: white;");
         stage.setTitle("Scientific Calculator");
-        stage.setScene(new Scene(root, 500, 550));
+        stage.setScene(new Scene(root, 300, 350));
         stage.show();
     }
-
+    
     private class MyHandler implements EventHandler<ActionEvent> {
       
         @Override
         public void handle (ActionEvent e)  {
     
         try {
-         
-            if (e.getSource() == add )  {
+            //numbers
+            if (e.getSource() == zero ) {
+                display = tf.getText();
+                tf.setText(display + "0");
+            }
+            
+            else if (e.getSource() == one ) {
+                display = tf.getText();
+                tf.setText(display + "1");
+            }
+            
+            else if (e.getSource() == two ) {
+                display = tf.getText();
+                tf.setText(display + "2");
+            }
+            
+            else if (e.getSource() == three ) {
+                display = tf.getText();
+                tf.setText(display + "3");
+            }
+            
+            else if (e.getSource() == four ) {
+                display = tf.getText();
+                tf.setText(display + "4");
+            }
+            
+            else if (e.getSource() == five ) {
+                display = tf.getText();
+                tf.setText(display + "5");
+            }
+            
+            else if (e.getSource() == six ) {
+                display = tf.getText();
+                tf.setText(display + "6");
+            }
+            
+            else if (e.getSource() == seven ) {
+                display = tf.getText();
+                tf.setText(display + "7");
+            }
+            
+            else if (e.getSource() == eight ) {
+                display = tf.getText();
+                tf.setText(display + "8");
+            }
+            
+            else if (e.getSource() == nine ) {
+                display = tf.getText();
+                tf.setText(display + "9");
+            }
+            //Operators
+            else if (e.getSource() == add )  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "+";
                 tf.setText("");
@@ -169,7 +274,7 @@ public class ScientificCalculator extends Application {
                 answer = Functions.Celsius(total1);
                 tf.setText("" + answer);
             }
-            
+             
             else if (e.getSource() == pound)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "lb";
@@ -177,6 +282,27 @@ public class ScientificCalculator extends Application {
                 tf.setText("" + answer);
             }
             
+            else if (e.getSource() == kilogram)  {
+                total1 = Double.parseDouble(tf.getText());
+                op = "kg";
+                answer = Functions.Kilogram(total1);
+                tf.setText("" + answer);
+            }
+            
+            else if (e.getSource() == mph)  {
+                total1 = Double.parseDouble(tf.getText());
+                op = "mph";
+                answer = Functions.Mph(total1);
+                tf.setText("" + answer);
+            }
+                 
+            else if (e.getSource() == kph)  {
+                total1 = Double.parseDouble(tf.getText());
+                op = "kph";
+                answer = Functions.Kph(total1);
+                tf.setText("" + answer);
+            }
+      
             else if (e.getSource() == equal)  {
                 total2 = Double.parseDouble(tf.getText());
                     switch (op) {
@@ -209,7 +335,7 @@ public class ScientificCalculator extends Application {
           }
         }     
     }       
-}   
+} 
 
 
 
