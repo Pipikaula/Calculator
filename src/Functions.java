@@ -1,8 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package scientificcalculator;
 
 /**
- * All of the function for the calculator
- * Andy Omori
+ *
+ * @author PC
  */
 public class Functions extends ScientificCalculator  {
     
@@ -50,6 +55,33 @@ public class Functions extends ScientificCalculator  {
         lb = kg / 0.453;
         
         return lb;
+    }
+    
+    public static double Kilogram (double k)  {
+        
+        double kg1;
+        double lb1 = k;
+        kg1 = lb1 * 0.453;
+        
+        return kg1;
+    }
+    
+    public static double Mph (double m) {
+        
+        double mph;
+        double kph = m;
+        mph = kph * 0.621;
+        
+        return mph;
+    }
+    
+    public static double Kph (double kp) {
+        
+        double kph1;
+        double mph1 = kp;
+        kph1 = mph1 * 1.609;
+        
+        return kph1;
     }
     
 }
