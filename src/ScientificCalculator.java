@@ -66,6 +66,7 @@ public class ScientificCalculator extends Application {
     Button kilogram = new Button("kg");
     Button mph = new Button("mph");
     Button kph = new Button("kph");
+    Button dec = new Button(".");
     
     public static void main(String[] args) {
        
@@ -102,7 +103,7 @@ public class ScientificCalculator extends Application {
         allButtons2.getChildren().addAll(nine, zero, clear, equal);
         allButtons3.getChildren().addAll(add, sub, multi, div);
         allButtons4.getChildren().addAll(pow, fact, farh, cels);
-        allButtons5.getChildren().addAll(pound, kilogram, mph, kph);
+        allButtons5.getChildren().addAll(pound, kilogram, mph, kph, dec);
         
         //Add all buttons to calculator
         root.add(tf, 0, 0);
@@ -158,6 +159,7 @@ public class ScientificCalculator extends Application {
         kilogram.setOnAction((EventHandler<ActionEvent>) new MyHandler());
         mph.setOnAction((EventHandler<ActionEvent>) new MyHandler());
         kph.setOnAction((EventHandler<ActionEvent>) new MyHandler());
+        dec.setOnAction((EventHandler<ActionEvent>) new MyHandler());
         
         //Frame properties
         root.setStyle("-fx-padding: 10px;");
@@ -223,6 +225,12 @@ public class ScientificCalculator extends Application {
                 display = tf.getText();
                 tf.setText(display + "9");
             }
+            
+            else if (e.getSource() == dec ) {
+                display = tf.getText();
+                tf.setText(display + ".");
+            }
+            
             //Operators
             else if (e.getSource() == add )  {
                 total1 = Double.parseDouble(tf.getText());
