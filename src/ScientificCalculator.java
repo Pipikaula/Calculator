@@ -181,137 +181,137 @@ public class ScientificCalculator extends Application {
                 tf.setText(display + "0");
             }
             
-            else if (e.getSource() == one ) {
+            if (e.getSource() == one ) {
                 display = tf.getText();
                 tf.setText(display + "1");
             }
             
-            else if (e.getSource() == two ) {
+            if (e.getSource() == two ) {
                 display = tf.getText();
                 tf.setText(display + "2");
             }
             
-            else if (e.getSource() == three ) {
+            if (e.getSource() == three ) {
                 display = tf.getText();
                 tf.setText(display + "3");
             }
             
-            else if (e.getSource() == four ) {
+            if (e.getSource() == four ) {
                 display = tf.getText();
                 tf.setText(display + "4");
             }
             
-            else if (e.getSource() == five ) {
+            if (e.getSource() == five ) {
                 display = tf.getText();
                 tf.setText(display + "5");
             }
             
-            else if (e.getSource() == six ) {
+            if (e.getSource() == six ) {
                 display = tf.getText();
                 tf.setText(display + "6");
             }
             
-            else if (e.getSource() == seven ) {
+            if (e.getSource() == seven ) {
                 display = tf.getText();
                 tf.setText(display + "7");
             }
             
-            else if (e.getSource() == eight ) {
+            if (e.getSource() == eight ) {
                 display = tf.getText();
                 tf.setText(display + "8");
             }
             
-            else if (e.getSource() == nine ) {
+            if (e.getSource() == nine ) {
                 display = tf.getText();
                 tf.setText(display + "9");
             }
             
-            else if (e.getSource() == dec ) {
+            if (e.getSource() == dec ) {
                 display = tf.getText();
                 tf.setText(display + ".");
             }
             
             //Operators
-            else if (e.getSource() == add )  {
+            if (e.getSource() == add )  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "+";
                 tf.setText("");
             }
  
-            else if (e.getSource() == sub )  {
+            if (e.getSource() == sub )  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "-";
                 tf.setText("");
             }
    
-            else if (e.getSource() == multi )  {
+            if (e.getSource() == multi )  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "*";
                 tf.setText("");
             }
         
-            else if (e.getSource() == div)  {
+            if (e.getSource() == div)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "/";
                 tf.setText("");
             }
      
-            else if (e.getSource() == pow)  {
+            if (e.getSource() == pow)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "xⁿ";
                 tf.setText("");
             }
        
-            else if (e.getSource() == fact)  {
+            if (e.getSource() == fact)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "!";
                 answer = Functions.Factorial(total1);
                 tf.setText("" + answer);
             }
             
-            else if (e.getSource() == farh)  {
+            if (e.getSource() == farh)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "°F";
                 answer = Functions.Farenheit(total1);
                 tf.setText("" + answer);
             }
             
-             else if (e.getSource() == cels)  {
+             if (e.getSource() == cels)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "°C";
                 answer = Functions.Celsius(total1);
                 tf.setText("" + answer);
             }
              
-            else if (e.getSource() == pound)  {
+            if (e.getSource() == pound)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "lb";
                 answer = Functions.Pound(total1);
                 tf.setText("" + answer);
             }
             
-            else if (e.getSource() == kilogram)  {
+            if (e.getSource() == kilogram)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "kg";
                 answer = Functions.Kilogram(total1);
                 tf.setText("" + answer);
             }
             
-            else if (e.getSource() == mph)  {
+            if (e.getSource() == mph)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "mph";
                 answer = Functions.Mph(total1);
                 tf.setText("" + answer);
             }
                  
-            else if (e.getSource() == kph)  {
+            if (e.getSource() == kph)  {
                 total1 = Double.parseDouble(tf.getText());
                 op = "kph";
                 answer = Functions.Kph(total1);
                 tf.setText("" + answer);
             }
       
-            else if (e.getSource() == equal)  {
+            if (e.getSource() == equal)  {
                 total2 = Double.parseDouble(tf.getText());
                     switch (op) {
                         case "+":
@@ -333,13 +333,13 @@ public class ScientificCalculator extends Application {
                 tf.setText("" + answer);
             }
             
-            else if (e.getSource() == clear )  {
+            if (e.getSource() == clear )  {
                 tf.setText("");
             }
      
         } catch (NumberFormatException nfe)  {
             
-            tf.setText("Error, enter number");
+            tf.setText("Error");
           }
         }     
     }       
